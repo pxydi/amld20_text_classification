@@ -1,0 +1,12 @@
+name: text-classification
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - nltk
+  - email
+  - beautifulsoup4
