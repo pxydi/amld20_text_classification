@@ -16,6 +16,7 @@ import email
 import re
 import string
 import nltk
+import textwrap
 from   bs4 import BeautifulSoup
 from   collections import Counter
 from random import randrange
@@ -375,8 +376,6 @@ def clean_corpus(df):
     # Reset index
     df.reset_index(inplace=True)
     df.drop('index',axis=1,inplace=True)
-    
-    print('Data cleaned.')
         
     return df
 
@@ -393,7 +392,7 @@ def show_clean_text(df):
     - the cleaned document
     
     For very long texts, only the first 
-    3'000 characters are printed on the screen.
+    2'000 characters are printed on the screen.
     '''
     
     doc_nbr = randrange(len(df))
@@ -402,16 +401,21 @@ def show_clean_text(df):
     doc = df.iloc[doc_nbr:doc_nbr+1,:]
     
     doc_length = len(doc['text'].values[0])
-    value = 3000
     
-    if doc_length > 3000:
-#        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0][0:value]))
-        print('\nOriginal document:\n\n{}\n'.format(doc['text'][0:value]))
-        print('Cleaned document:\n\n{}'.format(clean_corpus(doc)['text_cleaned'][0:value]))
-    else:
-#        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0]))
-        print('\nOriginal document:\n\n{}\n'.format(doc['text']))
-        print('Cleaned document:\n\n{}'.format(clean_corpus(doc)['text_cleaned']))
+    # Print only 2'000 chars
+    value = 2000
+
+    orig_text = doc['text'].values[0][0:value]
+    print(type(orig_text))
+    # Colab formating: wrap text
+    orig_text = '\n'.join(textwrap.wrap(orig_text, 90))
+    print('\nOriginal document:\n\n{}\n'.format(orig_text))
+    
+    # Colab formating: wrap text
+    clean_text = clean_corpus(doc)['text_cleaned'][0][0:value]
+    clean_text = '\n'.join(textwrap.wrap(clean_text, 90))
+    print('Cleaned document:\n\n{}'.format(clean_text))
+    print(type(clean_text[0]))
 
 ####################################
 ### Function:   Convert         ####
