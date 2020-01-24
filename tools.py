@@ -403,10 +403,12 @@ def show_clean_text(df):
     value = 3000
     
     if doc_length > 3000:
-        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0][0:value]))
+#        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0][0:value]))
+        print('\nOriginal document:\n\n{}\n'.format(doc['text'][0:value]))
         print('Cleaned document:\n\n{}'.format(clean_corpus(doc)['text_cleaned'][0:value]))
     else:
-        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0]))
+#        print('\nOriginal document:\n\n{}\n'.format(doc['text'].values[0]))
+        print('\nOriginal document:\n\n{}\n'.format(doc['text']))
         print('Cleaned document:\n\n{}'.format(clean_corpus(doc)['text_cleaned']))
 
 ####################################
