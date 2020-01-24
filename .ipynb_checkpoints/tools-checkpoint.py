@@ -375,6 +375,8 @@ def clean_corpus(df):
     # Reset index
     df.reset_index(inplace=True)
     df.drop('index',axis=1,inplace=True)
+    
+    print('Data cleaned.')
         
     return df
 
