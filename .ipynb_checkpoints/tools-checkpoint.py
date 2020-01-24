@@ -261,17 +261,15 @@ def get_features(df):
     features_df = pd.concat([df['label'],features],axis=1)
         
     # Plot results
-    # -------------
-    font = {'fontname':'Arial', 'size':'13'}
-
+    # ============
     cols = features_df.columns[1:]
-
+    
     fig, axes = plt.subplots(nrows=5, ncols=3, figsize=(16,4*5))
 
     for col,ax in zip(cols,axes.ravel()):
         ax.hist(np.log1p(features_df[features_df['label'] == 0][col]),bins=20,density=True,label='Non-spam',alpha=0.3,edgecolor='grey')
         ax.hist(np.log1p(features_df[features_df['label'] == 1][col]),bins=20,density=True,label='Spam',alpha=0.3,edgecolor='grey')
-        ax.legend()
+        ax.legend(fontsize=11)
         ax.set_ylabel('Normalized Frequency')
         ax.set_xlabel('Number of '+col.lower()[:-7]+'s (log scale)')
         
@@ -406,16 +404,14 @@ def show_clean_text(df):
     value = 2000
 
     orig_text = doc['text'].values[0][0:value]
-    print(type(orig_text))
     # Colab formating: wrap text
-    orig_text = '\n'.join(textwrap.wrap(orig_text, 90))
+    orig_text = '\n'.join(textwrap.wrap(orig_text, 100))
     print('\nOriginal document:\n\n{}\n'.format(orig_text))
     
     # Colab formating: wrap text
     clean_text = clean_corpus(doc)['text_cleaned'][0][0:value]
-    clean_text = '\n'.join(textwrap.wrap(clean_text, 90))
+    clean_text = '\n'.join(textwrap.wrap(clean_text, 100))
     print('Cleaned document:\n\n{}'.format(clean_text))
-    print(type(clean_text[0]))
 
 ####################################
 ### Function:   Convert         ####
@@ -586,7 +582,8 @@ def fit_model(df_train):
     # Define pipeline
     model = Pipeline([('vectorizer',CountVectorizer()),
                       ('lr',LogisticRegression(solver='liblinear',
-                                               class_weight='balanced'))]) 
+                                               class_weight='balanced',
+                                               random_state=None))]) 
 
     ## Optimized parameters ##
     ## -------------------- ##
@@ -711,14 +708,13 @@ def visualize_coefficients(model, n_top_features=25):
     # Plot top features
     # -----------------
     plt.figure(figsize=(18,6))
-    font_ticks = {'fontname':'Arial', 'size':'12'}
 
     plt.bar(x = df_coeffs.Feature,height=df_coeffs.Non_spam,edgecolor='black',label='Spam',alpha=0.3)
     plt.bar(x = df_coeffs.Feature,height=df_coeffs.Spam,edgecolor='black',label='Non-spam',alpha=0.3)
     plt.ylabel('Coefficient magnitude')
     plt.title('Top '+str(n_top_features)+' most important features in spam and non-spam')
     plt.legend()
-    plt.xticks(rotation=90,**font_ticks);    
+    plt.xticks(rotation=90,fontsize=12);    
 
 
 ###########################################
@@ -800,19 +796,22 @@ def error_analysis(df_test,model,doc_nbr,n_top=25):
     top_features['class'] = top_features['class'].apply(simple_func)
     top_features.reset_index(inplace=True)
     
-    # Apply style to top_features (font color)
-    #top_features_style = top_features[['feature','coef']].style.applymap(_color_red_or_black,subset=['coef'])
-        
     ## Outputs ##
     print('Document index:',doc_nbr,'\n')
     print('\nOriginal Text')
     print('=============')
-    print(temp.loc[doc_nbr,'text'][0:2500],'\n')
+    orig_text = temp.loc[doc_nbr,'text'][0:2000]
+    # Colab formating: wrap text
+    orig_text = '\n'.join(textwrap.wrap(orig_text, 100))
+    print(orig_text,'\n')
     
     print('\nCleaned text')
     print('============')
-    print(temp.loc[doc_nbr,'text_cleaned'][0:2500],'\n\n')
-
+    clean_text = temp.loc[doc_nbr,'text_cleaned'][0:2500]
+    # Colab formating: wrap text
+    clean_text = '\n'.join(textwrap.wrap(clean_text, 100))
+    print(clean_text,'\n\n')
+    
     print('Actual class:    ',class_dict[str(temp.loc[doc_nbr,'label'])])
     print('Predicted class: ',class_dict[str(temp.loc[doc_nbr,'prediction'])],'\n\n')
 
