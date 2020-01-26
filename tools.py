@@ -269,7 +269,7 @@ def get_features(df):
     for col,ax in zip(cols,axes.ravel()):
         ax.hist(np.log1p(features_df[features_df['label'] == 0][col]),bins=20,density=True,label='Non-spam',alpha=0.3,edgecolor='grey')
         ax.hist(np.log1p(features_df[features_df['label'] == 1][col]),bins=20,density=True,label='Spam',alpha=0.3,edgecolor='grey')
-        ax.legend(fontsize=11)
+        ax.legend(fontsize=12)
         ax.set_ylabel('Normalized Frequency')
         ax.set_xlabel('Number of '+col.lower()[:-7]+'s (log scale)')
         
@@ -708,9 +708,8 @@ def visualize_coefficients(model, n_top_features=25):
     # Plot top features
     # -----------------
     plt.figure(figsize=(18,6))
-
-    plt.bar(x = df_coeffs.Feature,height=df_coeffs.Non_spam,edgecolor='black',label='Spam',alpha=0.3)
     plt.bar(x = df_coeffs.Feature,height=df_coeffs.Spam,edgecolor='black',label='Non-spam',alpha=0.3)
+    plt.bar(x = df_coeffs.Feature,height=df_coeffs.Non_spam,edgecolor='black',label='Spam',alpha=0.3)
     plt.ylabel('Coefficient magnitude')
     plt.title('Top '+str(n_top_features)+' most important features in spam and non-spam')
     plt.legend()
