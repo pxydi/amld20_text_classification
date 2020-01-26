@@ -803,14 +803,14 @@ def error_analysis(df_test,model,doc_nbr,n_top=25):
     # Colab formating: wrap text
     orig_text = '\n'.join(textwrap.wrap(orig_text, 100))
     print(orig_text,'\n')
-    
+    '''
     print('\nCleaned text')
     print('============')
     clean_text = temp.loc[doc_nbr,'text_cleaned'][0:2500]
     # Colab formating: wrap text
     clean_text = '\n'.join(textwrap.wrap(clean_text, 100))
     print(clean_text,'\n\n')
-    
+    '''
     print('Actual class:    ',class_dict[str(temp.loc[doc_nbr,'label'])])
     print('Predicted class: ',class_dict[str(temp.loc[doc_nbr,'prediction'])],'\n\n')
 
