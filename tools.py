@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-sns.set_context('talk')
+#sns.set_context('talk')
 
 import os
 import email
