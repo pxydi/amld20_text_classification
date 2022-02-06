@@ -1,5 +1,3 @@
-<img src="static/EXTS_Logo.png" width="125px" align="right">
-
 # AMLD20 - Spam Detection
 ---
 
