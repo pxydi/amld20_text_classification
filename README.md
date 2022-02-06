@@ -2,7 +2,7 @@
 
 Welcome! This repository contains all resources for the **Spam Detection** hands-on exercise, presented during the [EPFL Extension School Workshop - Machine Learning and Data Visualization](https://appliedmldays.org/workshops/epfl-extension-school-workshop-machine-learning-and-data-visualization) at the [Applied Machine Learning Days 2020](https://appliedmldays.org/).
 
-In this hands-on exercise, participant are tasked to preprocess examples of spam and ham emails, and train their own text classifier. The goal of this hands-on exercise is to provide a general overview about the topic of text classification, and to showcase how to perform feature extraction. At the end, the participants will be able to train their own text classifier model, trained on spam/ham emails, and to predict the most likely class membership of any new sample of text.
+In this hands-on exercise, participant are tasked to preprocess examples of spam and ham emails, and train their own text classifier. The goal of this hands-on exercise is to provide a general overview on the topic of text classification. At the end of this workshop, the participants will be able to train their own text classifier model, trained on spam/ham emails, and to predict the most likely class membership of any new sample of text.
 
 **Slides**: The Google slides connected to this talk can be found [here](https://docs.google.com/presentation/d/1Jg9rO_3dXwKzJyDOr2ley8Is5oWKE6D_aJJlJrpw0mw/present?usp=sharing).
 
