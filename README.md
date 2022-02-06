@@ -1,5 +1,4 @@
 # AMLD20 - Spam Detection
----
 
 Welcome! This repository contains all resources for the **Spam Detection** hands-on exercise, presented during the [EPFL Extension School Workshop - Machine Learning and Data Visualization](https://appliedmldays.org/workshops/epfl-extension-school-workshop-machine-learning-and-data-visualization) at the [Applied Machine Learning Days 2020](https://appliedmldays.org/).
 
